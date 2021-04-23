@@ -1,7 +1,5 @@
 name: Aplicação Django
-
 on: [pull_request]
-
 jobs:
   build:
     env:
