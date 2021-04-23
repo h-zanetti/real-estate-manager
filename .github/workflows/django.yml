@@ -8,11 +8,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - users: actions/checkout@v2
-    - name: Set up do Python 3.8
+    - uses: actions/checkout@v2
+    - name: Set up do Python 3.7
       uses: actions/setup-python@v1
       with:
-        python-version: 3.8
+        python-version: 3.7
     - name: Instalar Depenências
       run: |
         pip install pipenv
