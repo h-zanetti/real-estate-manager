@@ -1,5 +1,7 @@
 from django.shortcuts import render
-from django.http.response import HttpResponse
 
 def home(request):
-    return HttpResponse('Home institucional')
+    return render(request, 'institucional/home.html')
+
+def quem_somos(request):
+    return render(request, 'institucional/quem_somos.html')

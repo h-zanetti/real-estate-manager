@@ -1,0 +1,94 @@
+{% extends 'institucional/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="text-center text-light" style="
+    background-image: linear-gradient(rgba(0, 35, 55, .6), rgba(0, 35, 55, .1)), url({% static 'images/baleia.jpg' %});
+    background-size: 125%;
+    background-repeat: no-repeat;
+    background-position: 0 40%;
+    height: 100vh;
+    padding-top: 30vh;
+">
+    <div class="row d-flex justify-content-center w-100">
+        <div class="col-md-4">
+            <h1 class="display-3 fw-normal pb-2 border-bottom">BEST STAY</h1>
+        </div>
+    </div>
+    <div class="col-lg-6 mx-auto">
+        <p class="fs-4 mb-4">MAIS RENDA, MENOS GASTOS E<br>MUITO MAIS LAZER</p>
+        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+            <a href="{% url 'institucional:quem_somos' %}#host-services" class="btn btn-warning btn-lg px-5 me-sm-3">Anfitriões</a>
+            <a href="{% url 'institucional:quem_somos' %}#guest-services" class="btn btn-warning btn-lg px-5">Hóspedes</a>
+        </div>
+    </div>
+</div>
+
+<div class="container p-3 my-4">
+    <div class="row g-5 d-flex justify-content-evenly">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <img src="{% static 'images/anita.jpg' %}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <div class="row">
+                        <h5 class="display-6 pb-2 border-bottom text-center">Anfitriões</h5>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-auto">
+                            <p class="card-text" style="text-indent: 2em">Com a Time Out Refuges seu imóvel te trará mais lucro e menos gastos. Nos momentos em que você não o usufruir, profissionais especializados em aluguel de temporada, aliados com nossos serviços especializados, tornarão o seu ativo um dos mais competitivos do mercado. Cadastre-se já e receba de graça um fotógrafo profissional em sua casa!</p>
+                        </div>
+                    </div>
+                    <div class="row mt-4 justify-content-center">
+                        <div class="col-auto">
+                            <a href="#" class="btn btn-lg btn-warning">Quero ser um Anfitrião</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card shadow">
+                <img src="{% static 'images/anita2.jpg' %}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <div class="row">
+                        <h5 class="display-6 pb-2 border-bottom text-center">Hóspedes</h5>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-auto">
+                            <p class="card-text" style="text-indent: 2em">Para os amantes de praia, a Time Out Refuges conta com um catálogo de imóveis de alto nível no Litoral Norte de São Paulo. Nosso trabalho vai muito além da estadia, prestamos serviços especializados para garantir a melhor experiência possível durante a sua visita a um dos lugares mais bonitos do Brasil. Venha conhecer nossas acomodações!</p>
+                        </div>
+                    </div>
+                    <div class="row mt-4 justify-content-center">
+                        <div class="col-auto">
+                            <a href="#" class="btn btn-lg btn-warning">Ver Acomodações</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid mt-5 p-5 bg-white">
+    <div class="row text-center justify-content-center">
+        <div class="col-md-6">
+            <p class="border-bottom fw-lighter fs-5">Traga mais conforto para a sua estadia com os nossos</p>
+            <h2 class="display-5">Serviços Especiais</h2>
+        </div>
+    </div>
+    <!-- TODO: for loop over services -->
+    <div class="row g-3 mt-5 py-2 justify-content-center">
+        <div class="col-md-3">
+            <div class="card border shadow text-white">
+                <img src="{% static 'images/anita.jpg' %}" class="card-img" alt="...">
+                <div class="card-img-overlay" style="background-image: linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,.3));">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    <p class="card-text">Last updated 3 mins ago</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
