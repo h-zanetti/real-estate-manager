@@ -17,10 +17,10 @@ from django.contrib import admin
 from django.urls import path
 from django.urls.conf import include
 from django.conf.urls.static import static
-from webdev import settings
+from webdev.settings import base as base_settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('webdev.institucional.urls')),
     path('users/', include('webdev.users.urls')),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+] + static(base_settings.STATIC_URL, document_root=base_settings.STATIC_ROOT)
