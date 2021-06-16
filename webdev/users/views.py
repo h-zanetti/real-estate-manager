@@ -22,9 +22,3 @@ def registro(request):
     }
 
     return render(request, 'users/registro.html', context)
-
-def login_view(request):
-    pass
-
-def logout(request):
-    pass

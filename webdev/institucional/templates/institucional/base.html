@@ -42,7 +42,7 @@
                         <a class="nav-link active" href="#">Perfil</a>
                         </li>
                         <li class="nav-item">
-                        <a class="nav-link active" href="#">Logout</a>
+                        <a href="{% url 'logout' %}" class="nav-link active">Logout</a>
                         </li>
                     </ul>
                     {% else %}
@@ -57,7 +57,7 @@
                         <a class="nav-link active" href="#">Seja um anfitrião</a>
                         </li>
                         <li class="nav-item">
-                        <a class="nav-link active" href="#">Login</a>
+                        <a href="{% url 'login' %}" class="nav-link active">Login</a>
                         </li>
                     </ul>
                     {% endif %}
