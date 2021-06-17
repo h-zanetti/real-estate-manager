@@ -1,0 +1,12 @@
+{% extends 'institucional/base.html' %}
+{% load static %}
+{% load bootstrap5 %}
+
+{% block content %}
+<div class="container">
+    <form action="{% url 'imoveis:cadastrar_imovel' %}" method="POST">
+        {% bootstrap_form form %}
+        <button type="submit" class="btn btn-primary">Enviar</button>
+    </form>
+</div>
+{% endblock%}
