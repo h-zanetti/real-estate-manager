@@ -1,0 +1,23 @@
+{% extends 'institucional/base.html' %}
+{% load static %}
+{% load bootstrap5 %}
+
+{% block content %}
+<div class="container my-5 pt-4">
+    <div class="row">
+        <div class="col-lg-6 col-md-12">
+            <h1 class="display-6">{{ imovel.ponto_de_referencia }}</h1>
+            <p>{{ imovel.cidade }}, {{ imovel.estado }}</p>
+            <p>{{ imovel.endereco }}</p>
+            <p>Ocupação máxima: {{ imovel.ocupacao_maxima }} hóspedes</p>
+            <p>Diária: R${{ imovel.diaria }}</p>
+        </div>
+        <div class="col-lg-6 col-md-12">
+            <form action="{% url 'imoveis:agendar_estadia' imovel.id %}" method="POST">
+                {% bootstrap_form form %}
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock%}

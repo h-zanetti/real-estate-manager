@@ -2,10 +2,14 @@
 {% load static %}
 
 {% block content %}
-<div class="container">
-    {% for imovel in imoveis %}
-        <h1 class="display-6">{{ imovel.ponto_de_referencia }}</h1>
-        <a href="{% url 'imoveis:agendar_estadia' imovel.id %}">Agendar</a>
-    {% endfor %}
+<div class="container my-5 pt-4">
+    <div class="row">
+        {% for imovel in imoveis %}
+        <div class="col-lg-4 col-md-6 col-sm-12">
+            <h1 class="display-6">{{ imovel.ponto_de_referencia }}</h1>
+            <a href="{% url 'imoveis:agendar_estadia' imovel.id %}">Agendar</a>
+        </div>
+        {% endfor %}
+    </div>
 </div>
 {% endblock%}

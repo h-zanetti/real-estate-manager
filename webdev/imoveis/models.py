@@ -1,3 +1,4 @@
+from webdev.users.models import User
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
@@ -14,3 +15,10 @@ class Imovel(models.Model):
     class Meta:
         verbose_name = _('imóvel')
         verbose_name_plural = _('imóveis')
+
+class Reserva(models.Model):
+    imovel = models.ForeignKey(Imovel, on_delete=models.SET_NULL, null=True, verbose_name=_('imóvel'))
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, verbose_name=_('usuário'))
+    check_in = models.DateField()
+    check_out = models.DateField()
+    visitantes = models.IntegerField()

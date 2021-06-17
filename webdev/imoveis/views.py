@@ -1,5 +1,5 @@
 from django.contrib.auth.decorators import login_required
-from webdev.imoveis.forms import ImovelForm
+from webdev.imoveis.forms import ReservaForm, ImovelForm
 from webdev.imoveis.models import Imovel
 from django.http.response import Http404
 from django.shortcuts import redirect, render
@@ -25,12 +25,31 @@ def cadastrar_imovel(request):
     }
     return render(request, 'imoveis/cadastrar_imovel.html', context)
 
-# def agendar_estadia(request, imovel_id):
-#     try:
-#         imovel = Imovel.objects.get(id=imovel_id)
-#         context = {
-#             'imovel': imovel
-#         }
-#         return render(request, 'imoveis/agendar_estadia.html', context)
-#     except Imovel.DoesNotExist:
-#         raise Http404('Imóvel não encontrado')
+def agendar_estadia(request, imovel_id):
+    try:
+        imovel = Imovel.objects.get(id=imovel_id)
+        if request.user.is_authenticated:
+            initial = {
+                'imovel': imovel,
+                'user': request.user,
+                'nome_completo': request.user.get_full_name(),
+                'email': request.user.email,
+            }
+        else:
+            initial = {'imovel': imovel}
+        if request.method == 'POST':
+            form = ReservaForm(request.POST, initial=initial)
+            if form.is_valid():
+                form.save()
+                return redirect('/')
+        else:
+            form = ReservaForm(initial=initial)
+
+        context = {
+            'imovel': imovel,
+            'form': form
+        }
+        return render(request, 'imoveis/agendar_estadia.html', context)
+
+    except Imovel.DoesNotExist:
+        raise Http404('Imóvel não encontrado')
