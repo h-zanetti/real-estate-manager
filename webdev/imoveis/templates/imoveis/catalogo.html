@@ -3,11 +3,17 @@
 
 {% block content %}
 <div class="container my-5 pt-4">
-    <div class="row">
+    <div class="row gy-3 d-flex justify-content-center">
         {% for imovel in imoveis %}
         <div class="col-lg-4 col-md-6 col-sm-12">
-            <h1 class="display-6">{{ imovel.ponto_de_referencia }}</h1>
-            <a href="{% url 'imoveis:agendar_estadia' imovel.id %}">Agendar</a>
+            <div class="card" style="width: 100%">
+                <img src="{{ imovel.fotos.first.img.url }}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{ imovel.ponto_de_referencia }}</h5>
+                    <p class="card-text">{{ imovel.get_localizacao }}</p>
+                    <a href="{% url 'imoveis:agendar_estadia' imovel.id %}" class="btn btn-primary">Ver mais</a>
+                </div>
+            </div>
         </div>
         {% endfor %}
     </div>

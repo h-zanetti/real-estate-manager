@@ -21,8 +21,11 @@ def resposta_catalogo(client, imovel):
 def test_catalogo_status_code(resposta_catalogo):
     assert resposta_catalogo.status_code == 200
 
-# def test_imovel_presente(resposta_catalogo, imovel):
-#     assertContains(
-#         resposta_catalogo,
-#         f'<a href="{reverse("imoveis:agendar_estadia", kwargs={"imovel_id": imovel.id})}"'
-#     )
+def test_btn_catalogo_presente(resposta_catalogo):
+    assertContains(resposta_catalogo, f'<a href="{reverse("imoveis:catalogo")}"')
+
+def test_imovel_presente(resposta_catalogo, imovel):
+    assertContains(
+        resposta_catalogo,
+        f'<a href="{reverse("imoveis:agendar_estadia", kwargs={"imovel_id": imovel.id})}"'
+    )

@@ -1,6 +1,6 @@
 from pytest_django.asserts import assertContains
 from django.urls import reverse
-from webdev.imoveis.models import Imovel
+from webdev.imoveis.models import Foto, Imovel
 from webdev.users.models import User
 import pytest
 
@@ -31,7 +31,11 @@ def test_btn_submit_presente(resposta_cadastrar_imovel_get):
 
 # POST
 @pytest.fixture
-def resposta_cadastrar_imovel(client, user):
+def foto_padrao(db):
+    Foto.objects.create(nome='default')
+
+@pytest.fixture
+def resposta_cadastrar_imovel(client, user, foto_padrao):
     client.force_login(user)
     return client.post(reverse('imoveis:cadastrar_imovel'), data={
         'ponto_de_referencia': 'Maresias',
@@ -47,3 +51,6 @@ def test_cadastrar_imovel_status_code(resposta_cadastrar_imovel):
 
 def test_imovel_cadastrado(resposta_cadastrar_imovel):
     assert Imovel.objects.exists()
+
+def test_imovel_com_foto_padrao(resposta_cadastrar_imovel):
+    assert Imovel.objects.first().fotos.first().img.name == 'fotos/default.jpg'

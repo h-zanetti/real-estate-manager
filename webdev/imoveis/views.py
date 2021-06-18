@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from webdev.imoveis.forms import ReservaForm, ImovelForm
-from webdev.imoveis.models import Imovel
+from webdev.imoveis.models import Foto, Imovel
 from django.http.response import Http404
 from django.shortcuts import redirect, render
 
@@ -15,7 +15,9 @@ def cadastrar_imovel(request):
     if request.method == 'POST':
         form = ImovelForm(request.POST)
         if form.is_valid():
-            form.save()
+            imovel = form.save()
+            foto = Foto.objects.get(nome='default')
+            imovel.fotos.add(foto)
             return redirect('imoveis:catalogo')
     else:
         form = ImovelForm()

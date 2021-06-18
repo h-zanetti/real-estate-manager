@@ -1,3 +1,5 @@
 from django.contrib import admin
+from webdev.imoveis.models import Imovel, Foto
 
-# Register your models here.
+admin.site.register(Imovel)
+admin.site.register(Foto)
