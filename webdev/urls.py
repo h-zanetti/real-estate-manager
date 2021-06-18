@@ -23,4 +23,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('webdev.institucional.urls')),
     path('users/', include('webdev.users.urls')),
-] + static(base_settings.STATIC_URL, document_root=base_settings.STATIC_ROOT)
+    path('imoveis/', include('webdev.imoveis.urls')),
+] 
+
+urlpatterns += static(base_settings.STATIC_URL, document_root=base_settings.STATIC_ROOT)
+urlpatterns += static(base_settings.MEDIA_URL, document_root=base_settings.MEDIA_ROOT)
