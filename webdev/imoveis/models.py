@@ -8,6 +8,7 @@ class Foto(models.Model):
 
 class Imovel(models.Model):
     # Referente ao imóvel em si
+    anfitriao = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, verbose_name=_('anfitrião'))
     ponto_de_referencia = models.CharField(_('ponto de referência'), max_length=75, null=True, blank=True)
     cidade = models.CharField(max_length=50)
     estado = models.CharField(max_length=2)
@@ -29,7 +30,7 @@ class Imovel(models.Model):
 
 class Reserva(models.Model):
     imovel = models.ForeignKey(Imovel, on_delete=models.SET_NULL, null=True, verbose_name=_('imóvel'))
-    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, verbose_name=_('usuário'))
+    hospede = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, verbose_name=_('hóspede'))
     check_in = models.DateField()
     check_out = models.DateField()
     visitantes = models.IntegerField()

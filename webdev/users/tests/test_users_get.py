@@ -26,6 +26,24 @@ def usuario(db):
         password='testUser123',
     )
 
+# Seja um anfitrião
+@pytest.fixture
+def resposta_ser_anfitriao(client):
+    return client.get(reverse('ser_anfitriao'))
+
+def test_ser_anfitriao_status_code(resposta_ser_anfitriao):
+    assert resposta_ser_anfitriao.status_code == 200
+
+def test_formulario_ser_anfitriao(resposta_ser_anfitriao):
+    assertContains(resposta_ser_anfitriao, f'<form action="{reverse("ser_anfitriao")}"')
+
+def test_input_email_presente(resposta_ser_anfitriao):
+    # Apesar do usuário ser logado com seu endereço de email, a classe LoginView do django chama esse input de username 
+    assertContains(resposta_ser_anfitriao, '<input type="text" name="email"')
+
+def test_btn_enviar_email_ser_anfitriao(resposta_ser_anfitriao):
+    assertContains(resposta_ser_anfitriao, '<button type="submit"')
+
 # Login
 @pytest.fixture
 def resposta_login(client):

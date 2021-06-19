@@ -25,16 +25,15 @@
                     <ul class="navbar-nav ms-auto">
                         {% if request.user.is_host %}
                         <li class="nav-item me-4">
-                        <a class="nav-link active" href="#">Meus Imóveis</a>
+                            <a class="nav-link active" href="#">Meus Imóveis</a>
                         </li>
                         <li class="nav-item me-4">
-                        <a class="nav-link active" href="#">Adicionar Imóvel</a>
-                        </li>
-                        {% else %}
-                        <li class="nav-item me-4">
-                        <a class="nav-link active" href="#">Minhas Estadias</a>
+                            <a href="{% url 'imoveis:cadastrar_imovel' %}" class="nav-link active">Adicionar Imóvel</a>
                         </li>
                         {% endif %}
+                        <li class="nav-item me-4">
+                            <a href="{% url 'minhas_reservas' %}" class="nav-link active">Minhas Estadias</a>
+                        </li>
                         <li class="nav-item me-4">
                             <a href="{% url 'imoveis:catalogo' %}" class="nav-link active">Acomodações</a>
                         </li>
@@ -51,13 +50,13 @@
                             <a href="{% url 'imoveis:catalogo' %}" class="nav-link active">Acomodações</a>
                         </li>
                         <li class="nav-item me-4">
-                        <a class="nav-link active" href="{% url 'institucional:quem_somos' %}">Quem somos</a>
+                            <a href="{% url 'institucional:quem_somos' %}" class="nav-link active">Quem somos</a>
                         </li>
                         <li class="nav-item me-4">
-                        <a class="nav-link active" href="#">Seja um anfitrião</a>
+                            <a href="{% url 'ser_anfitriao' %}" class="nav-link active">Seja um anfitrião</a>
                         </li>
                         <li class="nav-item">
-                        <a href="{% url 'login' %}" class="nav-link active">Login</a>
+                            <a href="{% url 'login' %}" class="nav-link active">Login</a>
                         </li>
                     </ul>
                     {% endif %}
@@ -67,6 +66,17 @@
     </header>
 
     <main class="flex-shrink-0">
+        {% if messages %}
+        <div class="container mt-4 pt-4">
+            <div class="row d-flex justify-content-center">
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tag }}" role="alert">
+                        {{ message }}
+                    </div>
+                {% endfor %}         
+            </div>
+        </div>
+        {% endif %}
         {% block content %}{% endblock %}
     </main>
 

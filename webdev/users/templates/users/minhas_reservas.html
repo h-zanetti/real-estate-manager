@@ -1,0 +1,27 @@
+{% extends 'institucional/base.html' %}
+{% load static %}
+{% load bootstrap5 %}
+{% block content %}
+<div class="container w-50 mt-5 mb-3 pt-5">
+    <div class="row d-flex justify-content-center mb-3">
+        <div class="col-md-8 pb-2 border-bottom text-center">
+            <h1 class="display-5">Minhas Reservas</h1>
+        </div>
+    </div>
+    <div class="row d-flex justify-content-center">
+        {% for reserva in reservas %}
+        <div class="col-lg-6 col-sm-12">
+            <div class="card shadow" style="width: 100%">
+                <img src="{{ reserva.imovel.fotos.first.img.url }}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{ reserva.imovel.ponto_de_referencia }} - {{ reserva.imovel.get_localizacao }}</h5>
+                    <p class="card-text my-0">Check in: {{ reserva.check_in }}</p>
+                    <p class="card-text">Check out: {{ reserva.check_out }}</p>
+                    <a href="{% url 'imoveis:agendar_estadia' reserva.imovel.id %}" class="btn btn-primary">Ver mais</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

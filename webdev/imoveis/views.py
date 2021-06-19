@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from webdev.imoveis.forms import ReservaForm, ImovelForm
 from webdev.imoveis.models import Foto, Imovel
@@ -12,15 +13,18 @@ def catalogo(request):
 
 @login_required
 def cadastrar_imovel(request):
+    if not request.user.is_host:
+        messages.warning(request, 'Torne-se um anfitrião e cadastre seus imóveis!')
+        return redirect('ser_anfitriao')
     if request.method == 'POST':
-        form = ImovelForm(request.POST)
+        form = ImovelForm(request.POST, initial={'anfitriao': request.user.id})
         if form.is_valid():
             imovel = form.save()
             foto = Foto.objects.get(nome='default')
             imovel.fotos.add(foto)
             return redirect('imoveis:catalogo')
     else:
-        form = ImovelForm()
+        form = ImovelForm(initial={'anfitriao': request.user.id})
     
     context = {
         'form': form
