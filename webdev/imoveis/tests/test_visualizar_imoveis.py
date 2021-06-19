@@ -1,11 +1,21 @@
 from pytest_django.asserts import assertContains
 from django.urls import reverse
 from webdev.imoveis.models import Imovel, Reserva
+from webdev.users.models import User
 import pytest
 
 @pytest.fixture
-def imovel(db):
+def user(db):
+    return User.objects.create(
+        email='endereco_de@email.com',
+        password='testUser123',
+        is_host=True,
+    )
+
+@pytest.fixture
+def imovel(user):
     return Imovel.objects.create(
+        anfitriao=user,
         ponto_de_referencia='Maresias',
         cidade='São Sebastião',
         estado='SP',
@@ -40,7 +50,7 @@ def resposta_agendar_estadia_post(client, imovel):
     return client.post(
         reverse('imoveis:agendar_estadia', kwargs={'imovel_id': imovel.id}),
         data = {
-            'user': '',
+            'hospede': '',
             'imovel': imovel.id,
             'nome_completo': 'José da Silva',
             'email': 'jose.silva@gmail.com',

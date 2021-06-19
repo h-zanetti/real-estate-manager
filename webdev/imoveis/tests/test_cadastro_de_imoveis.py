@@ -8,7 +8,8 @@ import pytest
 def user(db):
     return User.objects.create(
         email='endereco_de@email.com',
-        password='TestUser123'
+        password='TestUser123',
+        is_host=True
     )
 
 # GET
@@ -38,6 +39,7 @@ def foto_padrao(db):
 def resposta_cadastrar_imovel(client, user, foto_padrao):
     client.force_login(user)
     return client.post(reverse('imoveis:cadastrar_imovel'), data={
+        'anfitriao': user.id,
         'ponto_de_referencia': 'Maresias',
         'cidade': 'São Sebastião',
         'estado': 'SP',
@@ -45,6 +47,9 @@ def resposta_cadastrar_imovel(client, user, foto_padrao):
         'ocupacao_maxima': 6,
         'diaria': 250
     })
+
+# def test_nenhum_form_error(resposta_cadastrar_imovel):
+#     assert not resposta_cadastrar_imovel.context['form'].errors
 
 def test_cadastrar_imovel_status_code(resposta_cadastrar_imovel):
     assert resposta_cadastrar_imovel.status_code == 302

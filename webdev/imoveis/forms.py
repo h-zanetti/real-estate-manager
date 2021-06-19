@@ -3,9 +3,13 @@ from webdev.imoveis.models import Imovel, Reserva
 from django import forms
 
 class ImovelForm(forms.ModelForm):
+    anfitriao = forms.ModelChoiceField(
+        queryset=User.objects.filter(is_active=True),
+        widget=forms.HiddenInput()
+    )
     class Meta:
         model = Imovel
-        fields = '__all__'
+        exclude = ('fotos',)
 
 class ReservaForm(forms.ModelForm):
     user = forms.ModelChoiceField(
