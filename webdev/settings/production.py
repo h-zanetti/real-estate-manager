@@ -9,7 +9,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['casas-de-hermes.agahsolutions.com']
+ALLOWED_HOSTS = ['casasdehermes.com.br']
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
