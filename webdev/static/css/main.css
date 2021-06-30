@@ -1,11 +1,11 @@
 .text-shadow {
-    text-shadow: 0 .5rem 1rem rgba(black, .15);
+    text-shadow: 0 .5rem 1rem black;
 }
 
 .text-shadow-sm {
-    text-shadow: 0 .125rem .25rem rgba(black, .075);
+    text-shadow: 0 .125rem .25rem black;
 }
 
 .text-shadow-lg {
-    text-shadow: 0 1rem 3rem rgba(black, .075);
+    text-shadow: 0 1rem 3rem black;
 }
