@@ -11,15 +11,17 @@
     padding-top: 30vh;
 ">
     <div class="row d-flex justify-content-center w-100">
-        <div class="col-md-4">
+        <div class="col-lg-6 col-md-12">
             <h1 class="display-3 fw-normal pb-2 border-bottom">CASAS DE HERMES</h1>
         </div>
     </div>
-    <div class="col-lg-6 mx-auto">
-        <p class="fs-4 mb-4">MAIS RENDA, MENOS GASTOS E<br>MUITO MAIS LAZER</p>
-        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-            <a href="{% url 'institucional:quem_somos' %}#host-services" class="btn btn-warning btn-lg px-5 me-sm-3">Anfitriões</a>
-            <a href="{% url 'institucional:quem_somos' %}#guest-services" class="btn btn-warning btn-lg px-5">Hóspedes</a>
+    <div class="row d-flex justify-content-center w-100">
+        <div class="col-lg-6 col-md-12">
+            <p class="fs-4 mb-5">MAIS RENDA, MENOS GASTOS E<br>MUITO MAIS LAZER</p>
+            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                <a href="{% url 'institucional:quem_somos' %}#host-services" class="btn btn-warning btn-lg px-5 me-sm-3">Anfitriões</a>
+                <a href="{% url 'institucional:quem_somos' %}#guest-services" class="btn btn-warning btn-lg px-5">Hóspedes</a>
+            </div>
         </div>
     </div>
 </div>
@@ -80,7 +82,7 @@
     <div class="row g-3 mt-5 py-2 justify-content-center">
         <div class="col-md-3">
             <div class="card border shadow text-white">
-                <img src="{% static 'images/anita.jpg' %}" class="card-img" alt="...">
+                <img src="{% static 'images/anita1.jpg' %}" class="card-img" alt="...">
                 <div class="card-img-overlay" style="background-image: linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,.3));">
                     <h5 class="card-title">Card title</h5>
                     <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
