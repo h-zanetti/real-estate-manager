@@ -1,7 +1,7 @@
   
 import sys, os
 
-INTERP = "/home/wwagah/repositories/virtualenvs/real-estate-manager-env/bin/python"
+INTERP = "/home/hermes/repositories/virtualenvs/casas-de-hermes-venv/bin/python"
 
 if sys.executable != INTERP: os.execl(INTERP, INTERP, *sys.argv)
 
