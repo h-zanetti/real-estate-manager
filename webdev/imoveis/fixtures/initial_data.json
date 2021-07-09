@@ -1,0 +1,10 @@
+[
+    {
+        "model": "imoveis.foto",
+        "pk": 1,
+        "fields": {
+            "nome": "default",
+            "img": "default.jpg"
+        }
+    }
+]
