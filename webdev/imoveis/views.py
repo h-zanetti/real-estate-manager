@@ -59,3 +59,13 @@ def agendar_estadia(request, imovel_id):
 
     except Imovel.DoesNotExist:
         raise Http404('Imóvel não encontrado')
+
+@login_required
+def gerenciar_imoveis(request):
+    if request.user.is_host:
+        imoveis = Imovel.objects.filter(anfitriao=request.user)
+        return render(request, 'imoveis/gerenciar_imoveis.html', {'imoveis': imoveis})
+
+    else:
+        messages.success("É necessário se tornar um anfitrião para adicinar imóveis. Envie-nos uma mensagem e entraremos em contato assim que possível.")
+        return redirect('ser_anfitriao')

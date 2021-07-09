@@ -30,18 +30,43 @@
                     <ul class="navbar-nav ms-auto">
                         {% if request.user.is_host %}
                         <li class="nav-item me-4">
-                            <a class="nav-link active" href="#">Meus Imóveis</a>
+                            <div class="dropdown">
+                                <a class="dropdown-toggle nav-link active" href="" role="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Imóveis
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li><a href="{% url 'imoveis:gerenciar_imoveis' %}" class="dropdown-item">
+                                        Gerenciar
+                                    </a></li>
+                                    <li><a href="{% url 'imoveis:cadastrar_imovel' %}" class="dropdown-item">
+                                        Adicionar
+                                    </a></li>
+                                </ul>
+                            </div>
                         </li>
                         <li class="nav-item me-4">
-                            <a href="{% url 'imoveis:cadastrar_imovel' %}" class="nav-link active">Adicionar Imóvel</a>
+                            <div class="dropdown">
+                                <a class="dropdown-toggle nav-link active" href="" role="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Estadias
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                                    <li><a href="{% url 'imoveis:catalogo' %}" class="dropdown-item">
+                                        Gerenciar
+                                    </a></li>
+                                    <li><a href="{% url 'minhas_reservas' %}" class="dropdown-item">
+                                        Agendar
+                                    </a></li>
+                                </ul>
+                            </div>
                         </li>
-                        {% endif %}
+                        {% else %}
                         <li class="nav-item me-4">
                             <a href="{% url 'minhas_reservas' %}" class="nav-link active">Minhas Estadias</a>
                         </li>
                         <li class="nav-item me-4">
                             <a href="{% url 'imoveis:catalogo' %}" class="nav-link active">Acomodações</a>
                         </li>
+                        {% endif %}
                         <li class="nav-item me-4">
                             <a class="nav-link active" href="#">Perfil</a>
                         </li>
