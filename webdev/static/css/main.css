@@ -7,11 +7,11 @@ section.hero-section {
 }
 
     section.home {
-        background-image: linear-gradient(rgba(0, 35, 55, .7), rgba(0, 35, 55, .5)), url('../images/baleia1.jpg');
+        background-image: linear-gradient(rgba(0, 35, 55, .7), rgba(0, 35, 55, .5)), url('../images/thumbnails/tn_baleia.jpg');
     }
 
     section.quem-somos {
-        background-image: linear-gradient(rgba(0, 35, 55, .7), rgba(0, 35, 55, .5)), url('../images/anita1.jpg');
+        background-image: linear-gradient(rgba(0, 35, 55, .7), rgba(0, 35, 55, .5)), url('../images/thumbnails/tn_anita.jpg');
     }
 
 .text-shadow {
