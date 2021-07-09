@@ -1,0 +1,22 @@
+{% extends 'institucional/base.html' %}
+{% load static %}
+{% load bootstrap5 %}
+
+{% block content %}
+<div class="container-sm mt-5 pt-5">
+    <div class="row d-flex justify-content-center gy-3">
+        <div class="col-lg-6 col-md-6 col-sm-12">
+            <div class="card shadow" style="width: 100%">
+                <div class="card-body">
+                    <h5 class="display-6 text-center">Boas-vindas!</h5>
+                    <form action="{% url 'login' %}" method="post">
+                        {% csrf_token %}
+                        {% bootstrap_form form %}
+                        <button type="submit" class="btn btn-primary w-100">Enviar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

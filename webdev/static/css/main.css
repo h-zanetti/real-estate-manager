@@ -1,0 +1,31 @@
+section.hero-section {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 0 40%;
+    height: 100vh;
+    padding-top: 30vh;
+}
+
+    section.home {
+        background-image: linear-gradient(rgba(0, 35, 55, .7), rgba(0, 35, 55, .5)), url('../images/baleia1.jpg');
+    }
+
+    section.quem-somos {
+        background-image: linear-gradient(rgba(0, 35, 55, .7), rgba(0, 35, 55, .5)), url('../images/anita1.jpg');
+    }
+
+.text-shadow {
+    text-shadow: 0 .5rem 1rem black;
+}
+
+.text-shadow-sm {
+    text-shadow: 0 .125rem .25rem black;
+}
+
+.text-shadow-md {
+    text-shadow: 0 .25rem .5rem black;
+}
+
+.text-shadow-lg {
+    text-shadow: 0 1rem 3rem black;
+}

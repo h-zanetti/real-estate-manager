@@ -17,9 +17,14 @@ from django.contrib import admin
 from django.urls import path
 from django.urls.conf import include
 from django.conf.urls.static import static
-from webdev import settings
+from webdev.settings import base as base_settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('webdev.institucional.urls')),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    path('users/', include('webdev.users.urls')),
+    path('imoveis/', include('webdev.imoveis.urls')),
+] 
+
+# urlpatterns += static(base_settings.STATIC_URL, document_root=base_settings.STATIC_ROOT)
+urlpatterns += static(base_settings.MEDIA_URL, document_root=base_settings.MEDIA_ROOT)
