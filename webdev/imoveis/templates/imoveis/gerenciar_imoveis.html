@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block content %}
-<div class="container my-5 pt-4">
+<div class="container my-5 pt-5">
     <div class="row gy-3 d-flex justify-content-center">
         {% for imovel in imoveis %}
         <div class="col-lg-4 col-md-6 col-sm-12">
@@ -11,7 +11,19 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ imovel.ponto_de_referencia }}</h5>
                     <p class="card-text">{{ imovel.get_localizacao }}</p>
-                    <a href="{% url 'imoveis:agendar_estadia' imovel.id %}" class="btn btn-primary">Ver mais</a>
+                    <div class="row d-flex justify-content-center">
+                        <div class="col">
+                            <a href="{% url 'imoveis:agendar_estadia' imovel.id %}" class="btn btn-primary w-100">Visualizar</a>
+                        </div>
+                        <div class="col">
+                            <a href="{% url 'imoveis:editar_imovel' imovel.id %}" class="btn btn-secondary w-100">Editar</a>
+                        </div>
+                        <div class="col">
+                            <form action="{% url 'imoveis:deletar_imovel' imovel.id %}" method="POST">
+                                <button type="submit" class="btn btn-danger w-100">Deletar</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

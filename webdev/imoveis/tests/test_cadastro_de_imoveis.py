@@ -22,10 +22,7 @@ def test_cadastrar_imovel_get_status_code(resposta_cadastrar_imovel_get):
     assert resposta_cadastrar_imovel_get.status_code == 200
 
 def test_form_presente(resposta_cadastrar_imovel_get):
-    assertContains(
-        resposta_cadastrar_imovel_get,
-        f'<form action="{reverse("imoveis:cadastrar_imovel")}"'
-    )
+    assertContains(resposta_cadastrar_imovel_get, '<form')
 
 def test_btn_submit_presente(resposta_cadastrar_imovel_get):
     assertContains(resposta_cadastrar_imovel_get, '<button type="submit"')

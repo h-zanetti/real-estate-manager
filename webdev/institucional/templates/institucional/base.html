@@ -29,7 +29,7 @@
                     {% if request.user.is_authenticated %}
                     <ul class="navbar-nav ms-auto">
                         {% if request.user.is_host %}
-                        <li class="nav-item me-4">
+                        <li class="nav-item me-2">
                             <div class="dropdown">
                                 <a class="dropdown-toggle nav-link active" href="" role="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                     Imóveis
@@ -44,30 +44,30 @@
                                 </ul>
                             </div>
                         </li>
-                        <li class="nav-item me-4">
+                        <li class="nav-item me-2">
                             <div class="dropdown">
                                 <a class="dropdown-toggle nav-link active" href="" role="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
                                     Estadias
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
-                                    <li><a href="{% url 'imoveis:catalogo' %}" class="dropdown-item">
+                                    <li><a href="{% url 'minhas_reservas' %}" class="dropdown-item">
                                         Gerenciar
                                     </a></li>
-                                    <li><a href="{% url 'minhas_reservas' %}" class="dropdown-item">
-                                        Agendar
+                                    <li><a href="{% url 'imoveis:catalogo' %}" class="dropdown-item">
+                                        Catalogo
                                     </a></li>
                                 </ul>
                             </div>
                         </li>
                         {% else %}
-                        <li class="nav-item me-4">
+                        <li class="nav-item me-2">
                             <a href="{% url 'minhas_reservas' %}" class="nav-link active">Minhas Estadias</a>
                         </li>
-                        <li class="nav-item me-4">
+                        <li class="nav-item me-2">
                             <a href="{% url 'imoveis:catalogo' %}" class="nav-link active">Acomodações</a>
                         </li>
                         {% endif %}
-                        <li class="nav-item me-4">
+                        <li class="nav-item me-2">
                             <a class="nav-link active" href="#">Perfil</a>
                         </li>
                         <li class="nav-item">
@@ -76,13 +76,13 @@
                     </ul>
                     {% else %}
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item me-4">
+                        <li class="nav-item me-2">
                             <a href="{% url 'imoveis:catalogo' %}" class="nav-link active">Acomodações</a>
                         </li>
-                        <li class="nav-item me-4">
+                        <li class="nav-item me-2">
                             <a href="{% url 'institucional:quem_somos' %}" class="nav-link active">Quem somos</a>
                         </li>
-                        <li class="nav-item me-4">
+                        <li class="nav-item me-2">
                             <a href="{% url 'ser_anfitriao' %}" class="nav-link active">Seja um anfitrião</a>
                         </li>
                         <li class="nav-item">
@@ -97,16 +97,31 @@
 
     <main class="flex-shrink-0">
         {% if messages %}
-        <div class="container mt-4 pt-4">
-            <div class="row d-flex justify-content-center">
+            <div class="position-fixed bottom-0 end-0 p-5" style="z-index: 11">
                 {% for message in messages %}
-                    <div class="alert alert-{{ message.tag }}" role="alert">
+                <div class="row">
+                    <div class="alert alert-{{ message.tags }}" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                </div>
+            </div>
+            {% comment %} <div class="toast-container">
+            <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+                <div class="toast" role="alert" data-bs-autohide="false" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header">
+                        <div class="rounded bg-{{ message.tag }} p-2 me-2"></div>
+                        <strong class="me-auto">Bootstrap</strong>
+                        <small>{{ now }}</small>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body">
                         {{ message }}
                     </div>
-                {% endfor %}         
-            </div>
-        </div>
+                </div> {% endcomment %}
+                {% endfor %}
         {% endif %}
+
         {% block content %}{% endblock %}
     </main>
 
