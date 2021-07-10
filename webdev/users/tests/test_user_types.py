@@ -77,10 +77,7 @@ def resposta_cadastrar_imovel_com_host(client, host):
     return client.get(reverse('imoveis:cadastrar_imovel'))
 
 def test_form_presente(resposta_cadastrar_imovel_com_host):
-    assertContains(
-        resposta_cadastrar_imovel_com_host,
-        f'<form action="{reverse("imoveis:cadastrar_imovel")}"'
-    )
+    assertContains(resposta_cadastrar_imovel_com_host, '<form')
 
 def test_btn_submit_presente(resposta_cadastrar_imovel_com_host):
     assertContains(
