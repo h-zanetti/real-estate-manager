@@ -1,7 +1,8 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.urls.base import reverse
 from webdev.imoveis.forms import ReservaForm, ImovelForm
-from webdev.imoveis.models import Foto, Imovel
+from webdev.imoveis.models import Imovel
 from django.http.response import Http404, HttpResponseForbidden
 from django.shortcuts import redirect, render
 
@@ -15,14 +16,16 @@ def catalogo(request):
 def cadastrar_imovel(request):
     if request.user.is_host:
         if request.method == 'POST':
-            form = ImovelForm(request.POST, initial={'anfitriao': request.user.id})
+            form = ImovelForm(request.POST)
+            form.anfitriao = request.user.id
             if form.is_valid():
                 imovel = form.save()
-                foto = Foto.objects.get(nome='default')
-                imovel.fotos.add(foto)
-                return redirect('imoveis:catalogo')
+                return redirect(reverse(
+                    'imoveis:gerenciar_fotos',
+                    kwargs={'imovel_id': imovel.id}
+                ))
         else:
-            form = ImovelForm(initial={'anfitriao': request.user.id})
+            form = ImovelForm()
         
         context = {
             'title': 'Cadastrar imóvel',
@@ -30,7 +33,7 @@ def cadastrar_imovel(request):
         }
         return render(request, 'imoveis/imovel_form.html', context)
     else:
-        messages.warning(request, 'Torne-se um anfitrião e cadastre seus imóveis!')
+        messages.info(request, 'Torne-se um anfitrião e cadastre seus imóveis!')
         return redirect('ser_anfitriao')
 
 @login_required

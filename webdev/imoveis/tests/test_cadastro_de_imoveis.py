@@ -1,6 +1,6 @@
-from pytest_django.asserts import assertContains
+from pytest_django.asserts import assertContains, assertRedirects
 from django.urls import reverse
-from webdev.imoveis.models import Foto, Imovel
+from webdev.imoveis.models import Imovel
 from webdev.users.models import User
 import pytest
 
@@ -29,11 +29,7 @@ def test_btn_submit_presente(resposta_cadastrar_imovel_get):
 
 # POST
 @pytest.fixture
-def foto_padrao(db):
-    Foto.objects.create(nome='default')
-
-@pytest.fixture
-def resposta_cadastrar_imovel(client, user, foto_padrao):
+def resposta_cadastrar_imovel(client, user):
     client.force_login(user)
     return client.post(reverse('imoveis:cadastrar_imovel'), data={
         'anfitriao': user.id,
@@ -42,7 +38,7 @@ def resposta_cadastrar_imovel(client, user, foto_padrao):
         'estado': 'SP',
         'endereco': 'Av. Frente da Praia, 123, 01100-000',
         'ocupacao_maxima': 6,
-        'diaria': 250
+        'diaria': 250,
     })
 
 # def test_nenhum_form_error(resposta_cadastrar_imovel):
@@ -54,5 +50,5 @@ def test_cadastrar_imovel_status_code(resposta_cadastrar_imovel):
 def test_imovel_cadastrado(resposta_cadastrar_imovel):
     assert Imovel.objects.exists()
 
-def test_imovel_com_foto_padrao(resposta_cadastrar_imovel):
-    assert Imovel.objects.first().fotos.first().img.name == 'fotos/default.jpg'
+def test_cadastrar_imovel_redirecionamento(resposta_cadastrar_imovel):
+    assertRedirects(resposta_cadastrar_imovel, reverse('imoveis:gerenciar_fotos', kwargs={'imovel_id': 1}))

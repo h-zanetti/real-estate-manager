@@ -4,8 +4,12 @@ from django.utils.translation import gettext_lazy as _
 
 class Foto(models.Model):
     nome = models.CharField(max_length=25, null=True, blank=True)
-    img = models.ImageField(_('foto'), upload_to='fotos/', default='fotos/default.jpg')
+    img = models.ImageField(_('foto'), upload_to='fotos/')
+    index = models.IntegerField(_("índice"), null=True, blank=True, help_text='Utilizado para ordenar as fotos de forma crescente.')
 
+    def __str__(self):
+        return f'{self.nome}'
+    
 class Imovel(models.Model):
     # Referente ao imóvel em si
     anfitriao = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, verbose_name=_('anfitrião'))
@@ -14,7 +18,7 @@ class Imovel(models.Model):
     estado = models.CharField(max_length=2)
     endereco = models.CharField(_('endereço'), max_length=200)
     complemento = models.CharField(max_length=50, null=True, blank=True)
-    fotos = models.ManyToManyField(Foto, blank=True)
+    fotos = models.ManyToManyField(Foto, blank=True, verbose_name=_("fotos"))
     # Referente a estadia
     ocupacao_maxima = models.IntegerField(_('ocupação máxima'))
     diaria = models.FloatField(_('diária'))
@@ -22,11 +26,11 @@ class Imovel(models.Model):
         verbose_name = _('imóvel')
         verbose_name_plural = _('imóveis')
 
-    def get_localizacao(self):
-        return f'{self.endereco}, {self.cidade}, {self.estado}, {self.complemento}'
-
     def __str__(self):
         return f"{self.ponto_de_referencia}, {self.complemento}"
+
+    def get_localizacao(self):
+        return f'{self.endereco}, {self.cidade}, {self.estado}, {self.complemento}'
 
 class Reserva(models.Model):
     imovel = models.ForeignKey(Imovel, on_delete=models.SET_NULL, null=True, verbose_name=_('imóvel'))
